@@ -1,0 +1,117 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, "Chalkboard"; color: #708090; }
+img{height: 50px;}
+
+div#position{
+	margin-top: 10px;
+	padding-left: 20px;
+	color: #D2B48C;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: left;
+	border-bottom: 2px solid #D2B48C;
+	width: 100%;
+	height: 15%;
+	font-family: "American Typewriter";
+
+}
+div.popupContent {
+	background: white;
+	border-radius:5px;
+	padding: 10px;
+}
+table{
+	width: 100%;
+	height: 100%;
+}
+td{
+	text-overflow: ellipsis;
+	/*padding: 10px;*/
+	text-align: left;
+	vertical-align: top;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+td.roomall, td.userall{
+	width: 20%;
+	
+}
+
+td.roomall{
+	border-right: 2px solid #D2B48C; 
+}
+div#message{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	height: 100%;
+	overflow: scroll;
+}
+
+div.left button#newroombtn{
+	background-color: #f44336;
+	color: white;
+    border: none;
+    font-size: 18px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.left, div.right{
+	/*text-align: center;*/
+	padding-top: 10px;
+	margin-top: 10px;
+	height: 600px;
+}
+
+td.userall{
+	border-left: 2px solid #D2B48C; 
+}
+
+div#chat{ background: white; padding: 3px; position: fixed; bottom: 0; width: 100%; border-top: 2px solid #D2B48C; cursor: pointer; }
+div#chat input{ border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+div#chat button#sendto{ width: 9%; background: #f44336; border: none; padding: 10px; color: #FFFAF0; }
+
+div#prvt button{
+	 width: 9%; background: #f44336; border: none; padding: 5px; color: #FFFAF0;
+	 /*display: none;*/
+}
+
+ul{ list-style-type: none; }
+
+div#messages { margin: 5px; padding: 0; overflow: scroll; }
+/*ul#messages li { padding: 5px 10px; }*/
+/*ul#messages li:nth-child(odd) { background: #FDF5E6; }*/
+
+ul#rooms li, ul#users li{
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+div.ut{
+	margin-bottom: 10px;
+	color: 	#FF7F50;
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: 2px solid #f44336;
+}
+
+.offline{
+	color: #D2B48C;
+	font-weight: normal;
+	font-style: italic;
+}
+
+button#back{
+	display: none;
+	background-color: #D2B48C;
+	color: white;
+    border: none;
+    font-size: 10px;
+    padding: 3px 6px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 15px;
+}
+

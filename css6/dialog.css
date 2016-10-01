@@ -1,0 +1,94 @@
+div#main{
+	display: none;
+}
+
+div#create{
+	position: absolute;
+	width: 250px;
+	height: 150px;
+	background-color: #FFFAFA;
+	padding:15px;
+    box-shadow: 1px 1px 2px #888888;
+    display: none;
+    color: #696969;
+}
+
+div#create button, div#displayusers button{
+	background-color: #D2B48C;
+	color: white;
+    border: none;
+    font-size: 15px;
+    padding: 3px 6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+div#create input.res{
+	 display:none;
+}
+
+div#displayusers{
+	position: absolute;
+	width: 150px;
+	height: 350px;
+	background-color:#FFFAFA;
+	padding:5px;
+    box-shadow: 1px 1px 2px #888888;
+    display: none;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    color: #696969;
+}
+
+div#privatepart{
+	display: none;
+}
+
+div#pblc{
+	display: inline;
+}
+
+div#prvt{
+	display: none;
+}
+
+div#userpos{
+	position: absolute;
+	width: 200px;
+	height: 20px;
+	background-color:#FFFAFA;
+	padding:5px;
+    box-shadow: 1px 1px 2px #888888;
+    display: none;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    color: #696969;
+}
+
+div#userpos b{
+	color: #FF4500;
+}
+
+div#usersopr{
+	position: absolute;
+	width: 150px;
+	height: 40px;
+	background-color:#FFFAFA;
+	padding:5px;
+    box-shadow: 1px 1px 2px #888888;
+    display: none;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    color: #696969;
+}
+
+div#usersopr button{
+	background-color: #D2B48C;
+	color: white;
+    border: none;
+    font-size: 15px;
+    padding: 3px 6px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 10px;
+}

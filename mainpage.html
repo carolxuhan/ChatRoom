@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MainPage</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="/socket.io/socket.io.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="./css6/main.css" type="text/css"/>
+	<link rel="stylesheet" href="./css6/login.css" type="text/css"/>
+	<link rel="stylesheet" href="./css6/dialog.css" type="text/css"/>
+</head>
+<body>
+
+<div id="login">
+ <div class="popupContent">
+	   <h2>Type Your Nick Name</h2>
+	   <hr/>
+	   <input type="text" size=25 id="nickname" placeholder="Nickname" required="required"/>
+		<script>
+			function myFun(sId) {  
+			  var oImg = document.getElementsByTagName('img');  
+			
+			  for (var i = 0; i < oImg.length; i++) {  
+				if (oImg[i].id == sId) {  
+				  oImg[i].previousSibling.previousSibling.checked = true;  
+				  oImg[i].src = (i+1)+'+.jpg';
+				   //file = ''+oImg[i].src;
+				   file = (i+1)+'.jpg';
+				} else {  
+				  oImg[i].src = (i+1)+'.jpg';
+				}  
+			  }
+				return file;
+			}
+		</script>
+		<div class="imageselect">  
+			<input type="radio" value= "1.jpg" id= "111" name="aaa" style="display:none"> <img id="aa" alt="profile" src="1.jpg" onclick="myFun(this.id)">   
+			<input type="radio" value= "2.jpg" id= "222" name="aaa" style="display:none"> <img id="bb" alt="profile" src="2.jpg" onclick="myFun(this.id)">   
+			<input type="radio" value= "3.jpg" id= "333" name="aaa" style="display:none"> <img id="cc" alt="profile" src="3.jpg" onclick="myFun(this.id)">
+			<input type="radio" value= "4.jpg" id= "444" name="aaa" style="display:none"> <img id="dd" alt="profile" src="4.jpg" onclick="myFun(this.id)">  
+	   </div> 
+	   <button id="loginBtn">Confirm</button>
+ </div>
+</div> 
+
+<div id="main">
+	<div id="position"></div>
+
+	<table>
+		<tr>
+			<td class="roomall">
+				<div class="left">
+				<button id="newroombtn">Create a chat room</button><br><br>
+				<div>
+				<ul id="rooms"></ul>
+				</div>
+
+				<div id="create">
+					<b>Room name: </b><input type="text" id="roomname" autocomplete="off" /><br><br>
+					<b>Type: </b><input type="radio" name="type" value="public" id="public" checked="checked" /> public
+					<input type="radio" name="type" value="private" id="private" /> private<br><br>
+					<b>Password: </b><input type="password" id="pwd" disabled /><br><br>
+					<button id="confirm">Confirm</button>
+					<button id="cancel">Cancel</button>
+				</div>
+
+				<div id="displayusers">
+					<button id="joinroom">Join</button>
+					<button id="delroom">Delete</button>
+					<div id="privatepart">
+						<b>Password: </b><input type="password" id="roompwd" />
+						<button id="joinprivate">Confirm</button>
+					</div>
+					<br><br>
+					<input type="hidden" id="thisroom" />
+					<ul id="ruserlists"></ul>
+				</div>
+				</div>
+			</td>
+
+			<td class="msg">
+				<div id="message"></div>
+			</td>
+
+			<td class="userall">			
+				<div class="right">
+					<div id="usertitle" class="ut">All Users</div>
+					<ul id="users"></ul>
+					<button id="back">Back to Lobby</button>
+				</div>
+				<div id ="userpos">
+					<!--<button id="toprivate1">send private</button>-->
+	    			<input type="hidden" id="target" />
+				</div>
+				<div id="usersopr">
+					<button id="ban">Ban</button>
+					<button id="kick">Kick</button><br>
+					<input type="hidden" id="target2" />
+					<!--<button id="toprivate2">send private</button>-->
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<div id="chat">
+		<input type="text" id="say" autocomplete="off" placeholder="Speaking..." />
+	    <div id="pblc"><button id="sendto">send</button></div>
+	    <div id="prvt">
+	    	<button id="sendprvt">send private</button>
+	    	<button id="cancelprvt">cancel</button>
+	    </div>
+	    
+	    <div id="chatlog"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var User = {"info": {}, "list": new Array(), "room": {},"socket":{}, "pos": {}};
+	var Room = {"rinfo": {}, "rlist": new Array(), "ruser": {}, "rban": {}};
+	var socketio = io.connect();
+	var position = "Lobby";
+
+if (!Array.indexOf) {  
+    Array.prototype.indexOf = function (obj) {  
+        for (var i = 0; i < this.length; i++) {  
+            if (this[i] == obj) {  
+                return i;  
+            }  
+        }  
+        return -1;  
+    }  
+}
+
+if (!Array.remove) {
+    Array.prototype.remove = function(val) {  
+        var index = this.indexOf(val);  
+        if (index > -1) {  
+            this.splice(index, 1);  
+        }
+    };//code
+}
+</script>
+<script src="user.js"></script>
+<script src="room.js"></script>
+<script src="display.js"></script>
+<script type="text/javascript">
+
+	document.getElementById("loginBtn").addEventListener("click", login, false);
+
+	document.getElementById("newroombtn").addEventListener("click", addroom, false);
+
+	document.getElementById("delroom").addEventListener("click", delRoom, false);
+
+	document.getElementById("joinroom").addEventListener("click", joinRoom, false);
+
+	document.getElementById("sendto").addEventListener("click", sendMessage, false);
+
+	document.getElementById("sendprvt").addEventListener("click", sendPrivateMessage, false);
+
+	document.getElementById("joinprivate").addEventListener("click", joinprivateroom, false);
+
+	document.getElementById("cancelprvt").addEventListener("click", function(event){
+		document.getElementById("say").setAttribute("placeholder", "Speaking...");
+		document.getElementById("pblc").style.display = "inline";
+		document.getElementById("say").style.width = "90%";
+		document.getElementById("prvt").style.display = "none";
+		privatetarget = null;
+	}, false);
+
+	document.getElementById("back").addEventListener("click", backtolobby, false);
+
+	document.getElementById("ban").addEventListener("click", banUser, false);
+
+	document.getElementById("kick").addEventListener("click", kickUser, false);
+	
+	//document.getElementById("toprivate1").addEventListener("click", SetPrivate, false);
+	//document.getElementById("toprivate2").addEventListener("click", SetPrivate, false);
+	
+	//document.getElementById("usersopr").addEventListener("click", function(){
+	//	document.getElementById("usersopr").style.display = "none";	
+	//}, false);
+	//
+	//document.getElementById("userpos").addEventListener("click", function(){
+	//	document.getElementById("userpos").style.display = "none";	
+	//}, false);
+
+</script>
+
+</body>
+</html>
